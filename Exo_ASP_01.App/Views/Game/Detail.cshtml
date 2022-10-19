@@ -1,0 +1,24 @@
+﻿@model Game
+
+<h1>Detail de jeu @Model.Name</h1>
+
+<h2>Information</h2>
+<dl>
+    <dt>@Html.DisplayNameFor(Model => Model.Genres)</dt>
+    <dd>@(Model.Genres is null ? "N/A" : string.Join(", ",  Model.Genres.Select(g => g.Name)))</dd>
+    <dt>@Html.DisplayNameFor(Model => Model.ReleaseYear)</dt>
+    <dd>@Html.DisplayFor(Model => Model.ReleaseYear)</dd>
+    <dt>@Html.DisplayNameFor(Model => Model.PEGI)</dt>
+    <dd>@Html.DisplayFor(Model => Model.PEGI)</dd>
+    <dt>@Html.DisplayNameFor(Model => Model.Price)</dt>
+    <dd>@Html.DisplayFor(Model => Model.Price)</dd>
+</dl>
+
+<h2>Description</h2>
+@if(!(Model.ImgSrc is null)) {
+    <figure>
+        <img src="@Model.ImgSrc" alt="Illustration de @Model.Name" />
+        <figcaption>@Html.DisplayNameFor(Model => Model.ImgSrc)</figcaption>
+    </figure>
+}
+<p>@Html.DisplayFor(Model => Model.Description)</p>

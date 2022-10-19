@@ -1,0 +1,78 @@
+﻿@model GameAdd
+
+<h1>Ajouter un jeu</h1>
+
+<form method="post" enctype="multipart/form-data">
+
+    <div class="row">
+
+        <div class="col-12 mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="col-12 mb-3">
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="col-12 mb-3">
+            <label asp-for="Genres" class="form-label"></label>
+            <button type="button" id="btn-add-genre" class="btn btn-success">+</button>
+            <div id="zone-genre">
+                <input class="form-control col-3" type="text" name="Genres" />
+            </div>
+            <span asp-validation-for="Genres" class="text-danger"></span>
+        </div>
+
+        <div class="col-12 col-md-4 mb-3">
+            <label asp-for="PEGI" class="form-label"></label>
+            <input asp-for="PEGI" class="form-control" type="text" />
+            <span asp-validation-for="PEGI" class="text-danger"></span>
+        </div>
+        
+        <div class="col-12 col-md-4 mb-3">
+            <label asp-for="ReleaseYear" class="form-label"></label>
+            <input asp-for="ReleaseYear" class="form-control" />
+            <span asp-validation-for="ReleaseYear" class="text-danger"></span>
+        </div>
+
+        <div class="col-12 col-md-4 mb-3">
+            <label asp-for="Price" class="form-label"></label>
+            <input asp-for="Price" id="input-price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="col-12 mb-3">
+            <label class="form-label">Image</label>
+            <input type="file" name="Image" accept="image/*" />
+        </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+
+</form>
+
+@section Scripts {
+    <script>
+        const btnAddGenre = document.getElementById('btn-add-genre');
+        const zoneGenre = document.getElementById('zone-genre');
+
+        btnAddGenre.addEventListener('click', () => {
+            const inputGenre = document.createElement('input');
+            inputGenre.setAttribute('type', 'text');
+            inputGenre.setAttribute('name', 'Genres');
+            inputGenre.classList.add('form-control', 'col-3');
+            zoneGenre.appendChild(inputGenre);
+        });
+
+        const inputPrice = document.getElementById('input-price');
+        inputPrice.addEventListener('change', () => {
+            inputPrice.value = inputPrice.value.replaceAll('.', ',');
+        })
+
+    </script>
+}

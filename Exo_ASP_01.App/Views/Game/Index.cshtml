@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Game>
+
+<h1>Liste des jeux</h1>
+
+<table class="table table-hover">
+
+    <a class="btn btn-secondary" asp-controller="Game" asp-action="Add">Ajouter un jeu</a>
+
+    <thead>
+        <tr class="table-dark">
+            <td>@Html.DisplayNameFor(m => m.Name)</td>
+            <td>@Html.DisplayNameFor(m => m.Description)</td>
+            <td>@Html.DisplayNameFor(m => m.ReleaseYear)</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Game game in Model) {
+            <tr>
+                <td>@Html.DisplayFor(m => game.Name)</td>
+                <td>@Html.DisplayFor(m => game.DescriptionShort)</td>
+                <td>@Html.DisplayFor(m => game.ReleaseYear)</td>
+                <td>
+                    <a asp-controller="Game" asp-action="Detail" 
+                       asp-route-id="@game.Id" class="btn btn-danger">Detail</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
